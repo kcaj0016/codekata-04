@@ -38,8 +38,10 @@ public class FootballMain {
                         pointsSpreadMap.put(tokens[2], difference);
                     } else {
                         for (Integer v : pointsSpreadMap.values()) {
-                            if (difference <= v) {
+                            if (difference < v) {
                                 pointsSpreadMap.clear();
+                                pointsSpreadMap.put(tokens[2], difference);
+                            } else if (difference == v) {
                                 pointsSpreadMap.put(tokens[2], difference);
                             }
                         }
@@ -53,6 +55,7 @@ public class FootballMain {
         }
         Iterator<String> minSpread = pointsSpreadMap.keySet().iterator();
         System.out.println("Team with the smallest difference in points for and points against: " + minSpread.next());
+        // Just in case there are multiple teams that had the same difference.
         while (minSpread.hasNext()) {
             System.out.println("                                                            And : " + minSpread.next());
         }
